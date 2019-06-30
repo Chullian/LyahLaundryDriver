@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">LyahLaundry</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="login">Login</string>
+    <string name="password_cannot_be_empty">Password cannot be empty</string>
+    <string name="email_cannot_be_empty">Email cannot be empty</string>
+</resources>
