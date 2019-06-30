@@ -1,13 +1,17 @@
 package com.dynamiteam.lyahlaundry.tools
 
+import com.dynamiteam.lyahlaundry.data.model.response.LoginResponse
+
 object PrefManager {
 
 
     private val preferences = App.prefs
 
-    fun saveLoginSession(phone: String) {
-        /*  preferences.edit().putString(PREF_USER_PHONE, phone).putString(PREF_TOKEN, loginResponse.content?.token)
-              .putString(PREF_REFRESH_TOKEN, loginResponse.content?.refreshToken).apply()*/
+    fun saveLoginSession(email: String, loginResponse: LoginResponse) {
+        preferences.edit().putString(PREF_USER_EMAIL, email)
+            .putString(PREF_USER_ID, loginResponse.id.toString())
+            .putString(PREF_USER_RELATION, loginResponse.relation)
+            .apply()
     }
 
     fun clearSession() {

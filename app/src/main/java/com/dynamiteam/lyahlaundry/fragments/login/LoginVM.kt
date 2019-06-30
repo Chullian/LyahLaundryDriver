@@ -19,8 +19,12 @@ class LoginVM : BaseViewModel() {
     fun doLogin(loginRequest: LoginRequest) {
         if (!checkEmptyFeild(loginRequest)) {
             viewModelScope.launch {
-                var response = api.login(createParamsToLogin(loginRequest))
-                loginResponseLD.postValue(response)
+                try {
+                    var response = api.login(createParamsToLogin(loginRequest))
+                    loginResponseLD.postValue(response)
+                } catch (e: Exception) {
+                    errorObserverLD.postValue(e)
+                }
             }
         }
     }

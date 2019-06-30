@@ -5,15 +5,19 @@ import android.view.View
 import android.widget.Toast
 import com.dynamiteam.lyahlaundry.R
 import com.dynamiteam.lyahlaundry.base.BaseActivity
+import com.dynamiteam.lyahlaundry.base.BaseView
+import com.dynamiteam.lyahlaundry.fragments.home.HomeFragment
 import com.dynamiteam.lyahlaundry.fragments.login.LoginFragment
+import com.dynamiteam.lyahlaundry.tools.HOME_FRAGMENT
 import com.dynamiteam.lyahlaundry.tools.LOGIN_FRAGMENT
+import com.dynamiteam.lyahlaundry.tools.PrefManager
 import com.dynamiteam.lyahlaundry.tools.extentions.hide
 import com.dynamiteam.lyahlaundry.tools.extentions.setClickListeners
 import com.dynamiteam.lyahlaundry.tools.extentions.show
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActivity<MainActivityVM>(), MainCallback, View.OnClickListener {
+class MainActivity : BaseActivity<MainActivityVM>(), MainCallback, View.OnClickListener, BaseView {
 
 
     override val layoutId = R.layout.activity_main
@@ -22,7 +26,9 @@ class MainActivity : BaseActivity<MainActivityVM>(), MainCallback, View.OnClickL
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        showLoginFragment()
+        if (PrefManager.isFirstOpen) showLoginFragment()
+        else showHomeFragment()
+
         setClickListeners(progressContainer)
     }
 
@@ -79,7 +85,8 @@ class MainActivity : BaseActivity<MainActivityVM>(), MainCallback, View.OnClickL
     }
 
     override fun showHomeFragment() {
-
+        clearStack(0)
+        replaceFragment(HomeFragment(), HOME_FRAGMENT)
     }
 
     override fun showOtpFragment(text: String, isLogin: Boolean) {

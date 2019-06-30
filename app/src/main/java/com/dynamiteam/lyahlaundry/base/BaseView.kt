@@ -9,4 +9,5 @@ interface BaseView {
     fun isNeedProgress(): Boolean
 
     fun showSnack(message:String)
+    fun hideProgress()
 }

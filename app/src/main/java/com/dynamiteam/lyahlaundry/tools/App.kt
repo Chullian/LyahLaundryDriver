@@ -9,6 +9,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.RequiresApi
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
+import androidx.multidex.MultiDex
 
 class App : Application() {
 
@@ -36,7 +37,7 @@ class App : Application() {
 
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
-//        MultiDex.install(this)
+        MultiDex.install(this)
 
     }
 

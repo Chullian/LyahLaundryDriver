@@ -21,6 +21,7 @@ abstract class BaseFragment<T : BaseViewModel> : Fragment(), BaseView {
 
     private val errorObserver = Observer<Throwable> { error ->
         baseView?.showSnack(error.localizedMessage)
+        baseView?.hideProgress()
     }
     protected abstract val layoutId: Int
 
@@ -52,9 +53,7 @@ abstract class BaseFragment<T : BaseViewModel> : Fragment(), BaseView {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(layoutId, container, false)
-
-        return view
+        return inflater.inflate(layoutId, container, false)
     }
 
     private fun observeAllLiveData() {
@@ -64,6 +63,10 @@ abstract class BaseFragment<T : BaseViewModel> : Fragment(), BaseView {
 
     override fun showSnack(localizedMessage: String) {
         baseView?.showSnack(localizedMessage)
+    }
+
+    override fun hideProgress() {
+        baseView?.hideProgress()
     }
 
 }

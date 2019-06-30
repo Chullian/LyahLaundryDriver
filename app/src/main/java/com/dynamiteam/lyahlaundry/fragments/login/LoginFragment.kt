@@ -9,6 +9,7 @@ import com.dynamiteam.lyahlaundry.activities.MainCallback
 import com.dynamiteam.lyahlaundry.base.BaseFragment
 import com.dynamiteam.lyahlaundry.data.model.request.LoginRequest
 import com.dynamiteam.lyahlaundry.data.model.response.LoginResponse
+import com.dynamiteam.lyahlaundry.tools.PrefManager
 import com.dynamiteam.lyahlaundry.tools.bindInterfaceOrThrow
 import com.dynamiteam.lyahlaundry.tools.extentions.setClickListeners
 import com.dynamiteam.lyahlaundry.tools.extentions.text
@@ -39,6 +40,9 @@ class LoginFragment : BaseFragment<LoginVM>(), View.OnClickListener {
     private var loginResponseObserver = Observer<LoginResponse> {
         callback?.hideProgress()
         callback?.showSnack(it.id.toString())
+        PrefManager.saveLoginSession(loginEmailField.text(),it)
+        PrefManager.isFirstOpen = false
+        callback?.showHomeFragment()
     }
 
     override fun observeLiveData() {

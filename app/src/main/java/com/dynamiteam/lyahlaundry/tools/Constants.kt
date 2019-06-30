@@ -15,6 +15,7 @@ const val PREF_USER_NAME = "userName"
 const val PREF_USER_EMAIL = "userEmail"
 const val PREF_USER_PHONE = "userPhone"
 const val PREF_USER_IMAGE = "userAvatar"
+const val PREF_USER_RELATION = "relation"
 const val PREF_TOKEN = "token"
 const val PREF_REFRESH_TOKEN = "refreshToken"
 
